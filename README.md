@@ -98,6 +98,9 @@ logs/                    console training logs of both runs
 requirements.txt         pinned dependency versions
 ```
 
+The other files in the repository root (`CSCI1409_SIS3_RNN_LSTM_done.ipynb`, `CSCI1409_Week10_Homework.ipynb`,
+`names.txt`) are earlier course homework and are not part of this project.
+
 **What comes from other projects:** the detector architecture, training loop, augmentation, loss and metric
 implementation are from [Ultralytics](https://github.com/ultralytics/ultralytics) (AGPL-3.0), used as a library
 without modification. The dataset and the pretrained `yolo11n.pt` weights are also published by Ultralytics.
