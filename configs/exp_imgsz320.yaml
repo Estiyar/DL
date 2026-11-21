@@ -1,0 +1,19 @@
+# Controlled experiment: identical to baseline.yaml except ONE setting -> imgsz 640 -> 320.
+# Same data split, same initial checkpoint, same seed, epochs, lr, batch and augmentation.
+name: exp_imgsz320
+model: yolo11n.pt
+epochs: 40
+imgsz: 320               # <-- the only change
+batch: 16
+optimizer: SGD
+lr0: 0.01
+lrf: 0.01
+momentum: 0.937
+weight_decay: 0.0005
+warmup_epochs: 3
+patience: 100
+seed: 42
+deterministic: true
+workers: 4
+cache: false
+plots: true

@@ -1,0 +1,86 @@
+file,n_gt,n_pred,tp,fp,fn,errors
+4 (120).jpg,25,13,12,1,13,false_positive: zebra 0.62; missed: zebra (100x102 px); missed: zebra (44x78 px); missed: zebra (64x26 px); missed: zebra (26x62 px); missed: zebra (31x48 px); missed: zebra (86x42 px); missed: zebra (40x23 px); missed: zebra (28x39 px); missed: zebra (35x50 px); missed: zebra (32x39 px); missed: zebra (30x32 px); missed: zebra (28x42 px); missed: zebra (28x30 px)
+1 (273).jpg,9,7,6,1,3,"poor_localization: buffalo 0.60, IoU 0.24; missed: zebra (48x60 px); missed: zebra (52x50 px); missed: buffalo (49x31 px)"
+4 (73).jpg,8,6,5,1,3,"poor_localization: zebra 0.60, IoU 0.42; missed: zebra (34x72 px); missed: zebra (38x71 px); missed: zebra (62x37 px)"
+1 (11).jpg,4,1,1,0,3,missed: buffalo (66x44 px); missed: buffalo (47x26 px); missed: buffalo (45x22 px)
+1 (101).jpg,2,4,2,2,0,false_positive: buffalo 0.65; false_positive: buffalo 0.65
+1 (300).jpg,3,3,2,1,1,false_positive: zebra 0.83; missed: buffalo (755x213 px)
+1 (368).jpg,4,4,3,1,1,false_positive: buffalo 0.62; missed: buffalo (349x453 px)
+2 (121).jpg,14,12,12,0,2,missed: elephant (70x49 px); missed: elephant (40x35 px)
+2 (344).jpg,7,9,7,2,0,false_positive: zebra 0.71; false_positive: zebra 0.69
+2 (357).jpg,6,8,6,2,0,false_positive: elephant 0.72; false_positive: elephant 0.67
+2 (360).jpg,6,8,6,2,0,false_positive: elephant 0.75; false_positive: elephant 0.75
+2 (84).jpg,6,4,4,0,2,missed: elephant (34x30 px); missed: elephant (149x74 px)
+3 (373).jpg,1,1,0,1,1,wrong_class: pred rhino 0.63 on GT zebra (IoU 0.98); missed: zebra (304x227 px)
+4 (141).jpg,6,8,6,2,0,false_positive: zebra 0.62; false_positive: zebra 0.60
+4 (171).jpg,2,2,1,1,1,false_positive: zebra 0.71; missed: zebra (210x171 px)
+4 (281).jpg,6,6,5,1,1,"poor_localization: zebra 0.66, IoU 0.45; missed: zebra (133x126 px)"
+4 (69).jpg,11,9,9,0,2,missed: zebra (66x52 px); missed: zebra (74x73 px)
+1 (116).jpg,6,5,5,0,1,missed: buffalo (109x149 px)
+1 (133).jpg,1,2,1,1,0,false_positive: buffalo 0.73
+1 (134).jpg,4,3,3,0,1,missed: buffalo (58x22 px)
+1 (140).jpg,3,4,3,1,0,false_positive: buffalo 0.69
+1 (153).jpg,5,4,4,0,1,missed: buffalo (78x79 px)
+1 (167).jpg,4,5,4,1,0,false_positive: buffalo 0.65
+1 (172).jpg,4,3,3,0,1,missed: buffalo (167x183 px)
+1 (217).jpg,3,2,2,0,1,missed: buffalo (73x66 px)
+1 (272).jpg,2,3,2,1,0,false_positive: buffalo 0.66
+1 (295).jpg,2,3,2,1,0,false_positive: buffalo 0.72
+1 (309).jpg,3,4,3,1,0,false_positive: buffalo 0.75
+1 (338).jpg,10,9,9,0,1,missed: buffalo (37x63 px)
+1 (345).jpg,3,2,2,0,1,missed: buffalo (220x143 px)
+1 (348).jpg,2,3,2,1,0,false_positive: buffalo 0.83
+1 (63).jpg,4,3,3,0,1,missed: buffalo (107x84 px)
+2 (110).jpg,3,2,2,0,1,missed: elephant (77x104 px)
+2 (125).jpg,3,2,2,0,1,missed: elephant (221x210 px)
+2 (129).jpg,2,3,2,1,0,false_positive: elephant 0.74
+2 (136).jpg,2,1,1,0,1,missed: elephant (322x275 px)
+2 (141).jpg,5,6,5,1,0,"poor_localization: elephant 0.85, IoU 0.35"
+2 (155).jpg,2,1,1,0,1,missed: elephant (144x103 px)
+2 (156).jpg,2,1,1,0,1,missed: elephant (375x245 px)
+2 (167).jpg,2,1,1,0,1,missed: elephant (85x165 px)
+2 (170).jpg,2,1,1,0,1,missed: elephant (334x366 px)
+2 (174).jpg,6,5,5,0,1,missed: elephant (126x142 px)
+2 (187).jpg,6,5,5,0,1,missed: elephant (152x98 px)
+2 (215).jpg,5,4,4,0,1,missed: elephant (41x33 px)
+2 (222).jpg,5,4,4,0,1,missed: elephant (184x64 px)
+2 (228).jpg,2,1,1,0,1,missed: elephant (74x64 px)
+2 (321).jpg,4,5,4,1,0,false_positive: elephant 0.75
+2 (33).jpg,2,3,2,1,0,false_positive: elephant 0.81
+2 (371).jpg,2,1,1,0,1,missed: elephant (30x45 px)
+2 (40).jpg,4,5,4,1,0,false_positive: elephant 0.64
+2 (54).jpg,2,1,1,0,1,missed: elephant (69x99 px)
+2 (74).jpg,3,4,3,1,0,false_positive: elephant 0.78
+2 (93).jpg,8,7,7,0,1,missed: elephant (84x60 px)
+2 (98).jpg,2,1,1,0,1,missed: elephant (442x315 px)
+3 (108).jpg,2,3,2,1,0,false_positive: rhino 0.70
+3 (15).jpg,2,1,1,0,1,missed: rhino (306x296 px)
+3 (241).jpg,4,5,4,1,0,false_positive: rhino 0.76
+3 (242).jpg,3,4,3,1,0,false_positive: rhino 0.66
+3 (245).jpg,4,3,3,0,1,missed: rhino (131x62 px)
+3 (285).jpg,2,3,2,1,0,false_positive: rhino 0.63
+3 (309).jpg,2,3,2,1,0,false_positive: rhino 0.89
+3 (362).jpg,2,1,1,0,1,missed: rhino (182x167 px)
+3 (366).jpg,2,3,2,1,0,false_positive: rhino 0.63
+3 (86).jpg,2,1,1,0,1,missed: rhino (405x300 px)
+4 (117).jpg,3,2,2,0,1,missed: zebra (363x395 px)
+4 (121).jpg,7,6,6,0,1,missed: zebra (113x51 px)
+4 (123).jpg,3,2,2,0,1,missed: zebra (462x338 px)
+4 (129).jpg,4,3,3,0,1,missed: zebra (166x109 px)
+4 (145).jpg,2,1,1,0,1,missed: zebra (208x240 px)
+4 (159).jpg,6,5,5,0,1,missed: zebra (63x41 px)
+4 (214).jpg,2,1,1,0,1,missed: zebra (408x369 px)
+4 (229).jpg,1,2,1,1,0,false_positive: zebra 0.81
+4 (238).jpg,2,1,1,0,1,missed: zebra (201x138 px)
+4 (256).jpg,2,3,2,1,0,false_positive: zebra 0.69
+4 (266).jpg,3,4,3,1,0,false_positive: zebra 0.68
+4 (293).jpg,4,5,4,1,0,false_positive: zebra 0.70
+4 (3).jpg,4,3,3,0,1,missed: zebra (316x402 px)
+4 (302).jpg,2,3,2,1,0,false_positive: zebra 0.67
+4 (320).jpg,3,4,3,1,0,false_positive: zebra 0.68
+4 (335).jpg,4,3,3,0,1,missed: zebra (66x203 px)
+4 (46).jpg,10,9,9,0,1,missed: zebra (135x104 px)
+4 (6).jpg,3,2,2,0,1,missed: zebra (186x102 px)
+4 (62).jpg,6,5,5,0,1,missed: zebra (140x80 px)
+4 (89).jpg,2,1,1,0,1,missed: zebra (110x57 px)
+4 (94).jpg,2,1,1,0,1,missed: zebra (216x457 px)

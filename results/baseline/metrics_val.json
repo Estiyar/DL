@@ -1,0 +1,46 @@
+{
+  "run": "baseline",
+  "split": "val",
+  "precision": 0.960040361771995,
+  "recall": 0.8910550243270872,
+  "mAP50": 0.9593375409550056,
+  "mAP50_95": 0.8024096040988118,
+  "per_class_mAP50": {
+    "buffalo": 0.9650710605063109,
+    "elephant": 0.9359877832800573,
+    "rhino": 0.9690425804468128,
+    "zebra": 0.9672487395868412
+  },
+  "eval_settings": {
+    "conf": 0.001,
+    "nms_iou": 0.7,
+    "imgsz": 640
+  },
+  "best_epoch": 39,
+  "train_time_sec": 1632.5,
+  "train_time_min": 27.21,
+  "device": "mps",
+  "hardware": "arm64 arm (mps)",
+  "ultralytics": "8.4.216",
+  "torch": "2.15.0",
+  "python": "3.15.2",
+  "model": "yolo11n.pt",
+  "config": {
+    "epochs": 40,
+    "imgsz": 640,
+    "batch": 16,
+    "optimizer": "SGD",
+    "lr0": 0.01,
+    "lrf": 0.01,
+    "momentum": 0.937,
+    "weight_decay": 0.0005,
+    "warmup_epochs": 3,
+    "patience": 100,
+    "seed": 42,
+    "deterministic": true,
+    "workers": 4,
+    "cache": false,
+    "plots": true,
+    "device": "mps"
+  }
+}

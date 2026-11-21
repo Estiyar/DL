@@ -1,0 +1,21 @@
+{
+  "weights": "weights/baseline_best.pt",
+  "split": "test",
+  "conf": 0.25,
+  "nms_iou": 0.7,
+  "match_iou": 0.5,
+  "images": 206,
+  "images_with_errors": 40,
+  "gt_boxes": 341,
+  "tp": 323,
+  "fp": 44,
+  "fn": 18,
+  "precision_at_conf": 0.8801089918256131,
+  "recall_at_conf": 0.9472140762463344,
+  "error_types": {
+    "missed": 18,
+    "false_positive": 33,
+    "wrong_class": 1,
+    "poor_localization": 10
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "final_run": "baseline",
+  "weights": "weights/baseline_best.pt",
+  "imgsz": 640,
+  "rule": "max val mAP@0.50 (tie-break: val mAP@0.50:0.95)"
+}

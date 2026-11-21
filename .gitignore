@@ -1,0 +1,8 @@
+.venv/
+datasets/
+runs/
+weights/
+*.pt
+__pycache__/
+.DS_Store
+my_prediction.jpg

@@ -1,0 +1,76 @@
+{
+  "splits": {
+    "train": {
+      "images": 1080,
+      "objects": 1978,
+      "images_without_objects": 0,
+      "objects_per_class": {
+        "buffalo": 413,
+        "elephant": 565,
+        "rhino": 413,
+        "zebra": 587
+      },
+      "images_per_class": {
+        "buffalo": 279,
+        "elephant": 275,
+        "rhino": 273,
+        "zebra": 267
+      },
+      "most_common_sizes": {
+        "640x480": 81,
+        "640x427": 60,
+        "1920x1440": 18
+      }
+    },
+    "val": {
+      "images": 218,
+      "objects": 366,
+      "images_without_objects": 0,
+      "objects_per_class": {
+        "buffalo": 86,
+        "elephant": 87,
+        "rhino": 83,
+        "zebra": 110
+      },
+      "images_per_class": {
+        "buffalo": 59,
+        "elephant": 52,
+        "rhino": 54,
+        "zebra": 57
+      },
+      "most_common_sizes": {
+        "640x427": 15,
+        "640x480": 13,
+        "600x400": 4
+      }
+    },
+    "test": {
+      "images": 206,
+      "objects": 341,
+      "images_without_objects": 0,
+      "objects_per_class": {
+        "buffalo": 52,
+        "elephant": 96,
+        "rhino": 67,
+        "zebra": 126
+      },
+      "images_per_class": {
+        "buffalo": 40,
+        "elephant": 56,
+        "rhino": 49,
+        "zebra": 62
+      },
+      "most_common_sizes": {
+        "640x480": 16,
+        "480x640": 7,
+        "640x427": 6
+      }
+    }
+  },
+  "label_issue_counts": {
+    "prefix_class_absent": 1
+  },
+  "near_duplicate_pairs": 69,
+  "cross_split_near_duplicate_pairs": 0,
+  "phash_max_distance": 6
+}
