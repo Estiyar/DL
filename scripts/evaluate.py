@@ -1,14 +1,3 @@
-"""Evaluate a checkpoint on a split (default: the held-out TEST split).
-
-Usage:  python scripts/evaluate.py --weights weights/baseline_best.pt --split test --imgsz 640
-
-Evaluation settings (recorded in the output json):
-  conf = 0.001  -> keep almost all detections so the full precision-recall curve can be built
-  iou  = 0.7    -> IoU threshold of non-maximum suppression (NMS)
-  mAP@0.50 uses IoU >= 0.50 between prediction and ground truth to count a true positive.
-  Precision / Recall are Ultralytics' values at the confidence that maximises mean F1.
-Run this only once, on the final model chosen with VALIDATION results.
-"""
 from __future__ import annotations
 
 import argparse
@@ -22,7 +11,7 @@ from ultralytics import YOLO
 from common import DATA_YAML, RESULTS_DIR, ROOT, RUNS_DIR
 from train import pick_device
 
-COPY = ["confusion_matrix.png", "confusion_matrix_normalized.png", "BoxPR_curve.png", "BoxF1_curve.png"]
+COPY = ["confusion_matrix.png", "BoxPR_curve.png"]
 
 
 def main() -> None:

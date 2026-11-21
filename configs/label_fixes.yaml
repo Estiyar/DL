@@ -1,13 +1,6 @@
-# Wrong class ids found during the label check (scripts/check_dataset.py "prefix_class_absent"
-# + model-assisted audit with scripts/failure_analysis.py --split train/val). Each image was
-# inspected visually (results/dataset/label_errors.jpg). Applied by scripts/prepare_data.py:
-# every box of class `from` in that label file is changed to class `to`.
-# Class ids: 0 buffalo, 1 elephant, 2 rhino, 3 zebra
 fixes:
 - {split: train, file: "3 (373).txt", from: 3, to: 2, note: "rhino labelled as zebra"}
 - {split: train, file: "3 (374).txt", from: 3, to: 2, note: "rhino labelled as zebra"}
 - {split: train, file: "3 (375).txt", from: 3, to: 2, note: "rhino labelled as zebra"}
 - {split: train, file: "4 (376).txt", from: 0, to: 3, note: "3 zebras labelled as buffalo"}
 - {split: val,   file: "3 (376).txt", from: 3, to: 2, note: "rhino labelled as zebra"}
-# Checked and NOT changed: test/"4 (163).jpg" - file prefix says zebra, but the image shows an
-# elephant and is correctly labelled as elephant (only the file name is misleading).

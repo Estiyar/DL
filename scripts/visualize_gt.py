@@ -1,8 +1,3 @@
-"""Draw ground-truth boxes on sample images -> results/dataset/gt_examples.jpg
-
-Usage:  python scripts/visualize_gt.py [--split train] [--n 8] [--seed 42]
-Samples are chosen with a fixed seed and stratified so that every class appears.
-"""
 from __future__ import annotations
 
 import argparse
@@ -24,7 +19,6 @@ def main() -> None:
     rng = random.Random(args.seed)
     imgs = image_paths(args.split)
     rng.shuffle(imgs)
-    # two images per class (by the class of their first box), then fill up
     picked, per_cls = [], {c: 0 for c in CLASS_NAMES}
     for p in imgs:
         rows = read_labels(p)

@@ -1,8 +1,3 @@
-"""Compare runs on the VALIDATION split: markdown table + overlaid learning curves.
-
-Usage:  python scripts/compare_runs.py baseline exp_imgsz320
-Outputs: results/comparison.md, results/learning_curves_comparison.png
-"""
 from __future__ import annotations
 
 import json
@@ -28,8 +23,6 @@ def main() -> None:
     (RESULTS_DIR / "comparison.md").write_text("\n".join(rows) + "\n")
     print("\n".join(rows))
 
-    # Final-model selection uses VALIDATION results only (test set is never looked at here):
-    # highest val mAP@0.50, ties broken by val mAP@0.50:0.95.
     final = max(runs, key=lambda r: (round(metrics[r]["mAP50"], 3), metrics[r]["mAP50_95"]))
     sel = {"final_run": final, "weights": f"weights/{final}_best.pt", "imgsz": metrics[final]["config"]["imgsz"],
            "rule": "max val mAP@0.50 (tie-break: val mAP@0.50:0.95)"}

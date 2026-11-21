@@ -1,19 +1,3 @@
-"""Find and visualise failure cases of a detector on the test split.
-
-Usage:  python scripts/failure_analysis.py --weights weights/baseline_best.pt [--conf 0.25]
-        # label audit: confident "false positives" on train are candidate missing labels
-        python scripts/failure_analysis.py --weights weights/baseline_best.pt --split train --conf 0.5 --out results/label_audit
-
-Matching rule at a fixed operating point (conf >= 0.25, NMS IoU 0.7):
-  * predictions are processed by descending confidence and greedily matched to the
-    unmatched ground-truth box with the highest IoU;
-  * TP  : same class and IoU >= 0.5
-  * wrong_class      : IoU >= 0.5 with a GT box of another class
-  * poor_localization: same class but 0.1 <= IoU < 0.5 (box too loose / too tight / split)
-  * false_positive   : prediction that matches no GT (background or duplicate box)
-  * missed           : GT box with no TP (false negative)
-Outputs (results/failures/): failures.csv, summary.json, failure_*.jpg (GT left, prediction right)
-"""
 from __future__ import annotations
 
 import argparse
@@ -44,7 +28,6 @@ def iou(a, b) -> float:
 
 
 def analyse(gts, preds):
-    """gts: [(cls, xyxy)], preds: [(cls, conf, xyxy)] -> (tp, errors list)"""
     matched = set()
     tp, errors = 0, []
     for pc, ps, pb in sorted(preds, key=lambda p: -p[1]):
@@ -72,7 +55,7 @@ def main() -> None:
     ap.add_argument("--weights", required=True)
     ap.add_argument("--imgsz", type=int, default=640)
     ap.add_argument("--conf", type=float, default=0.25)
-    ap.add_argument("--k", type=int, default=6, help="number of failure images to render")
+    ap.add_argument("--k", type=int, default=3)
     ap.add_argument("--split", default="test", help="test (failure analysis) or train/val (label audit)")
     ap.add_argument("--out", default=str(OUT))
     args = ap.parse_args()
@@ -114,7 +97,6 @@ def main() -> None:
     (out / "summary.json").write_text(json.dumps(summary, indent=2))
     print(json.dumps(summary, indent=2))
 
-    # Pick the worst image of each error type first, then fill with overall worst images
     bad = sorted([r for r in records if r["errors"]], key=lambda r: -(r["fp"] + r["fn"]))
     chosen = []
     for t in ("missed", "false_positive", "wrong_class", "poor_localization"):
@@ -127,7 +109,7 @@ def main() -> None:
         if r not in chosen:
             chosen.append(r)
 
-    for i, r in enumerate(chosen, 1):
+    for i, r in enumerate(chosen[: args.k], 1):
         p = next(x for x in image_paths(args.split) if x.name == r["file"])
         gt_img, pr_img = cv2.imread(str(p)), cv2.imread(str(p))
         for c, b in r["gts"]:

@@ -1,4 +1,3 @@
-"""Shared paths and helpers used by all scripts in this repository."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -7,7 +6,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 DATASET_DIR = ROOT / "datasets" / "african-wildlife"
-DATA_YAML = DATASET_DIR / "data.yaml"  # written by prepare_data.py (absolute path inside)
+DATA_YAML = DATASET_DIR / "data.yaml"
 RESULTS_DIR = ROOT / "results"
 RUNS_DIR = ROOT / "runs"
 SPLITS = ("train", "val", "test")
@@ -21,12 +20,10 @@ def image_paths(split: str) -> list[Path]:
 
 
 def label_path(img: Path) -> Path:
-    """images/<split>/x.jpg -> labels/<split>/x.txt (standard YOLO layout)."""
     return img.parents[2] / "labels" / img.parent.name / (img.stem + ".txt")
 
 
 def read_labels(img: Path) -> list[tuple[int, float, float, float, float]]:
-    """Return [(cls, xc, yc, w, h), ...] in normalised YOLO format ([] if missing/empty)."""
     lp = label_path(img)
     if not lp.exists():
         return []

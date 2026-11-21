@@ -1,20 +1,17 @@
-# Baseline run: fine-tune COCO-pretrained YOLO11n on African Wildlife (4 classes).
-# Every key except `name` and `model` is passed unchanged to ultralytics `model.train()`.
 name: baseline
-model: yolo11n.pt        # initial weights: official Ultralytics COCO-pretrained checkpoint
+model: yolo11n.pt
 epochs: 40
 imgsz: 640
 batch: 16
-optimizer: SGD           # fixed explicitly (default "auto" may pick a different optimizer/lr)
-lr0: 0.01                # initial learning rate
-lrf: 0.01                # final lr = lr0 * lrf (linear decay)
+optimizer: SGD
+lr0: 0.01
+lrf: 0.01
 momentum: 0.937
 weight_decay: 0.0005
 warmup_epochs: 3
-patience: 100            # no early stopping; best.pt is selected by validation fitness
+patience: 100
 seed: 42
 deterministic: true
 workers: 4
 cache: false
 plots: true
-# Default Ultralytics augmentation (mosaic=1.0, fliplr=0.5, hsv, scale=0.5, translate=0.1)

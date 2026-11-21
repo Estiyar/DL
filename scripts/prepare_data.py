@@ -1,10 +1,3 @@
-"""Download the African Wildlife dataset, verify it, and write data.yaml.
-
-Usage:  python scripts/prepare_data.py
-
-Idempotent: if the dataset is already present it is only re-verified.
-The data.yaml written here uses an absolute path, so it works both locally and in Colab.
-"""
 from __future__ import annotations
 
 import hashlib
@@ -20,8 +13,6 @@ URL = "https://github.com/ultralytics/assets/releases/download/v0.0.0/african-wi
 SHA256 = "6b97a768bd8c89a4ac6f1fd72549a5af805f68568d8846fd0fe68e30c0040061"
 EXPECTED = {"train": 1052, "val": 225, "test": 227}
 
-# Files moved between splits to remove cross-split duplicates (see results/dataset/duplicates.csv).
-# Filled in by scripts/check_dataset.py findings; applied deterministically after extraction.
 SPLIT_FIXES_FILE = ROOT / "configs" / "split_fixes.yaml"
 
 
@@ -42,14 +33,12 @@ def download_and_extract() -> None:
     digest = sha256(zip_path)
     assert digest == SHA256, f"Checksum mismatch: {digest}"
     print("Checksum OK")
-    # The archive has images/, labels/ ... at its root, so extract into the dataset folder.
     DATASET_DIR.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(zip_path) as z:
         z.extractall(DATASET_DIR)
 
 
 def apply_split_fixes() -> int:
-    """Move images (and labels) listed in configs/split_fixes.yaml to their target split."""
     if not SPLIT_FIXES_FILE.exists():
         return 0
     fixes = yaml.safe_load(SPLIT_FIXES_FILE.read_text()) or {}
@@ -71,7 +60,6 @@ LABEL_FIXES_FILE = ROOT / "configs" / "label_fixes.yaml"
 
 
 def apply_label_fixes() -> int:
-    """Correct wrong class ids listed in configs/label_fixes.yaml (idempotent)."""
     if not LABEL_FIXES_FILE.exists():
         return 0
     changed = 0
@@ -94,10 +82,10 @@ def main() -> None:
         download_and_extract()
     else:
         print(f"Dataset already present at {DATASET_DIR}")
-    moved = apply_split_fixes()  # idempotent: already-moved files are skipped
+    moved = apply_split_fixes()
     print(f"Applied split fixes: {moved} image(s) moved (see configs/split_fixes.yaml)")
     print(f"Applied label fixes: {apply_label_fixes()} box(es) relabelled (see configs/label_fixes.yaml)")
-    for cache in DATASET_DIR.glob("labels/*.cache"):  # force Ultralytics to re-read labels
+    for cache in DATASET_DIR.glob("labels/*.cache"):
         cache.unlink()
 
     data = {

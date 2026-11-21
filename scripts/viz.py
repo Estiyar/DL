@@ -1,10 +1,8 @@
-"""Small drawing helpers (OpenCV) shared by the visualisation scripts."""
 from __future__ import annotations
 
 import cv2
 import numpy as np
 
-# BGR colours per class id
 COLORS = {0: (40, 40, 220), 1: (200, 120, 30), 2: (40, 170, 40), 3: (20, 160, 230)}
 GT_COLOR = (60, 200, 60)
 PRED_COLOR = (40, 40, 230)
@@ -30,7 +28,6 @@ def draw_box(img, xyxy, text, color, thickness=None):
 
 
 def fit(img, size):
-    """Letterbox an image into a size x size tile."""
     h, w = img.shape[:2]
     s = size / max(h, w)
     img = cv2.resize(img, (int(w * s), int(h * s)))

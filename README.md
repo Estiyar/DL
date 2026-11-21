@@ -168,7 +168,7 @@ The rest of the official split was kept unchanged; there are no video frames in 
 
 **3. Wrong class labels.** Two independent checks found the same errors:
 - **Filename check.** Files are named `<k> (<n>).jpg`, where `k` is the class the photo was collected for. `check_dataset.py` flags images with no box of that class.
-- **Model-assisted audit.** A first baseline model was run on train/val. Confident predictions that disagree with the ground truth point to possible label errors (`results/_before_label_fix/label_audit/`).
+- **Model-assisted audit.** A first baseline model was run on train/val. Confident predictions that disagree with the ground truth point to possible label errors (candidates listed in `results/_before_label_fix/label_audit/*/failures.csv`).
 
 Visual inspection confirmed **5 images with wrong class ids (7 boxes)**:
 - 4 rhinos labelled *zebra* (train ×3, val ×1);
@@ -206,7 +206,7 @@ Evidence in `results/baseline/`:
 - `results.csv`: per-epoch log of losses and validation metrics;
 - `results.png`: learning curves;
 - `metrics_val.json`: metrics of the selected checkpoint;
-- confusion matrix, PR/F1 curves and validation batch predictions.
+- `confusion_matrix.png`, `BoxPR_curve.png`: validation confusion matrix and precision-recall curve.
 
 The console log is in `logs/train_baseline.log`.
 

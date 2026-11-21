@@ -1,10 +1,3 @@
-"""Train one run from a YAML config and collect its evidence in results/<name>/.
-
-Usage:  python scripts/train.py --config configs/baseline.yaml [--epochs N] [--device cpu]
-
-After training, the best checkpoint (selected by Ultralytics on VALIDATION fitness =
-0.1*mAP@0.5 + 0.9*mAP@0.5:0.95) is re-validated on the val split, and metrics are saved.
-"""
 from __future__ import annotations
 
 import argparse
@@ -22,10 +15,7 @@ from ultralytics import YOLO
 
 from common import DATA_YAML, RESULTS_DIR, ROOT, RUNS_DIR, load_yaml
 
-EVIDENCE = ["args.yaml", "results.csv", "results.png", "confusion_matrix.png",
-            "confusion_matrix_normalized.png", "BoxPR_curve.png", "BoxF1_curve.png",
-            "BoxP_curve.png", "BoxR_curve.png", "labels.jpg", "train_batch0.jpg",
-            "val_batch0_labels.jpg", "val_batch0_pred.jpg"]
+EVIDENCE = ["args.yaml", "results.csv", "results.png", "confusion_matrix.png", "BoxPR_curve.png"]
 
 
 def pick_device() -> str:
@@ -58,7 +48,6 @@ def main() -> None:
     run_dir = RUNS_DIR / name
     best = run_dir / "weights" / "best.pt"
 
-    # Re-validate the selected checkpoint on the validation split with fixed settings.
     val = YOLO(str(best)).val(data=str(DATA_YAML), split="val", imgsz=cfg["imgsz"],
                               batch=cfg["batch"], conf=0.001, iou=0.7, device=device,
                               project=str(RUNS_DIR), name=f"{name}_val", exist_ok=True, plots=True)

@@ -1,9 +1,3 @@
-"""Draw predicted boxes (class + confidence) on images -> one grid image.
-
-Usage:
-  python scripts/predict.py --weights weights/baseline_best.pt               # 8 test images
-  python scripts/predict.py --weights weights/baseline_best.pt --source my_photo.jpg
-"""
 from __future__ import annotations
 
 import argparse

@@ -1,12 +1,3 @@
-"""Dataset statistics, label sanity checks and duplicate detection.
-
-Usage:  python scripts/check_dataset.py
-
-Writes to results/dataset/:
-  stats.json / stats.md     images and objects per split and class
-  label_issues.csv          every suspicious annotation found
-  duplicates.csv            near-duplicate image pairs (perceptual hash), incl. cross-split pairs
-"""
 from __future__ import annotations
 
 import csv
@@ -20,15 +11,15 @@ from PIL import Image
 from common import CLASS_NAMES, RESULTS_DIR, SPLITS, image_paths, label_path, read_labels
 
 OUT = RESULTS_DIR / "dataset"
-PHASH_MAX_DIST = 6  # Hamming distance on 64-bit pHash; <=6 is visually near-identical
-MIN_BOX_PX = 4  # boxes thinner than this (in pixels) are flagged as suspicious
+PHASH_MAX_DIST = 6
+MIN_BOX_PX = 4
 
 
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     stats = {}
     issues = []
-    hashes = []  # (split, filename, hash)
+    hashes = []
 
     for split in SPLITS:
         imgs = image_paths(split)
@@ -42,7 +33,7 @@ def main() -> None:
                 with Image.open(img) as im:
                     w, h = im.size
                     hashes.append((split, img.name, imagehash.phash(im.convert("RGB"))))
-            except Exception as e:  # corrupt image
+            except Exception as e:
                 issues.append((split, img.name, "corrupt_image", str(e)))
                 continue
             sizes[f"{w}x{h}"] += 1
@@ -69,8 +60,6 @@ def main() -> None:
                     issues.append((split, img.name, "duplicate_box", tag))
                 seen.add(key)
                 cls_objs[CLASS_NAMES.get(cls, str(cls))] += 1
-            # Files are named "<k> (<n>).jpg" where k-1 is the class the image was collected for.
-            # If no box of that class exists, the class ids may be wrong -> inspect visually.
             prefix = img.name.split(" ")[0]
             if prefix.isdigit() and rows and int(prefix) - 1 not in {r[0] for r in rows}:
                 issues.append((split, img.name, "prefix_class_absent",
@@ -88,7 +77,6 @@ def main() -> None:
             "most_common_sizes": dict(sizes.most_common(3)),
         }
 
-    # Near-duplicate search (all pairs; ~1.1M comparisons of 64-bit hashes is fast enough)
     dups = []
     for (s1, f1, h1), (s2, f2, h2) in itertools.combinations(hashes, 2):
         d = h1 - h2
@@ -115,7 +103,6 @@ def main() -> None:
     }
     (OUT / "stats.json").write_text(json.dumps(summary, indent=2))
 
-    # Markdown table for the README
     names = list(CLASS_NAMES.values())
     lines = ["| Split | Images | Objects | " + " | ".join(names) + " |",
              "|---|---:|---:|" + "---:|" * len(names)]
